@@ -1,0 +1,40 @@
+# Compilación y ejecución de pruebas
+target/
+build
+
+# Dependencias de Maven
+.mvn/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Dependencias de Gradle
+.gradle
+
+# Dependencias de Node.js
+node_modules/
+
+# IDEs
+.idea/
+*.iml
+
+# Sistema de control de versiones
+.git/
+
+# Archivos de configuración local
+*.local
+
+# Archivos temporales
+*.tmp
+*.swp
+
+# Archivos de registro
+*.log
+
+# Archivos de configuración de Serenity BDD
+# serenity.properties //// este impide que suba el archivo properties al repositorio, mantener comentado  
+
+# Evitar ignorar el archivo jar envoltorio de Maven (.jar archivos son generalmente ignorados) // Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!.mvn/wrapper/maven-wrapper.jar

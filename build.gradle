@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.24.0'
+    testImplementation 'org.testng:testng:7.4.0'
+}
+
+test {
+    useTestNG()
+    systemProperty 'java.awt.headless', 'false'
+}
