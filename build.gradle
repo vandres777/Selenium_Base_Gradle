@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.seleniumhq.selenium:selenium-java:4.24.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.25.0'
     testImplementation 'org.testng:testng:7.4.0'
 }
 

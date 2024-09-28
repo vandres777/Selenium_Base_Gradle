@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: test_app
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    command: ["./gradlew", "test"]
