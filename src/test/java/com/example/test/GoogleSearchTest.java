@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -28,10 +27,12 @@ public class GoogleSearchTest {
         searchBox.sendKeys("wikipedia");
         searchBox.submit();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        WebElement resultsStats = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("result-stats")));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebElement firstResult = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("h3")));
+        firstResult.click();
 
-        //Assert.assertTrue(resultsStats.isDisplayed(), "Results page is not displayed");
+        WebElement aboutWikipediaLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Acerca de Wikipedia")));
+        aboutWikipediaLink.click();
     }
 
     @AfterClass
@@ -46,8 +47,4 @@ public class GoogleSearchTest {
         }
     }
 }
-
-
-/// prueba github
-//otra prueba
 
