@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'jenkins/jenkins:lts'
+            args '-u root:root'
+        }
+    }
 
     environment {
         JAVA_HOME = tool name: 'OpenJDK', type: 'jdk'
