@@ -16,6 +16,11 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Grant execute permission for gradlew') {
+            steps {
+                sh 'chmod +x ./gradlew'
+            }
+        }
         stage('Build') {
             steps {
                 sh './gradlew clean build'
@@ -23,7 +28,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './gradlew test aggregate'
+                sh './gradlew test'
             }
         }
         stage('Archive Reports') {
@@ -31,7 +36,7 @@ pipeline {
                 publishHTML(target: [
                     reportDir: 'build/reports/tests/test',
                     reportFiles: 'index.html',
-                    reportName: 'Serenity BDD Report'
+                    reportName: 'Test Report'
                 ])
             }
         }
