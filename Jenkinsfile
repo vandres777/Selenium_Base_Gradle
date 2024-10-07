@@ -16,6 +16,14 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Verify Chrome and ChromeDriver Installation') {
+            steps {
+                sh '''
+                    google-chrome --version
+                    chromedriver --version
+                '''
+            }
+        }
         stage('Grant execute permission for gradlew') {
             steps {
                 sh 'chmod +x ./gradlew'
