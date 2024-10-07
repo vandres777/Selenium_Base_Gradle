@@ -16,6 +16,15 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    # Update package list and install wget and sudo
+                    apt-get update
+                    apt-get install -y wget sudo
+                '''
+            }
+        }
         stage('Install Chrome and ChromeDriver') {
             steps {
                 sh '''
