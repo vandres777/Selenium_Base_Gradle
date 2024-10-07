@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'jenkins/jenkins:lts'
-            args '-u root:root'
-        }
-    }
+    agent any
 
     environment {
         JAVA_HOME = tool name: 'OpenJDK', type: 'jdk'
@@ -19,33 +14,6 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh '''
-                    # Update package list and install wget and sudo
-                    apt-get update
-                    apt-get install -y wget sudo
-                '''
-            }
-        }
-        stage('Install Chrome and ChromeDriver') {
-            steps {
-                sh '''
-                    # Install Chrome
-                    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-                    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-                    sudo apt-get update
-                    sudo apt-get install -y google-chrome-stable
-
-                    # Install ChromeDriver
-                    CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`
-                    wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-                    unzip chromedriver_linux64.zip
-                    sudo mv -f chromedriver /usr/local/bin/chromedriver
-                    sudo chmod 0755 /usr/local/bin/chromedriver
-                '''
             }
         }
         stage('Grant execute permission for gradlew') {
